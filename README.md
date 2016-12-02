@@ -1,7 +1,7 @@
 is-cf
 =====
 
-Returns `true` if running on Cloud Foundry, otherwise returns `false`
+Cloud Foundry environment detection and helpers.
 
 
 # Installation
@@ -15,6 +15,10 @@ var isCF = require('is-cf');
 
 if (isCF.env()) {
 	// Running on a Cloud Foundry
+  if (isCF.getService('p-redis')) {
+    // Service 'p-redis' is bound, do stuff
+
+  }
 }
 ```
 
@@ -22,4 +26,16 @@ if (isCF.env()) {
 
 #### `env()`
 
-Determines Cloud Foundry presence using environment variables
+Determines Cloud Foundry presence using environment variables, returns a boolean
+
+#### `getAppEnv()`
+
+Returns VCAP_APPLICATION environment variable as an object
+
+#### `getService(name)`
+
+Returns environment metadata for service 'name' as an array, or null if service 'name' not found
+
+#### `getServicesEnv(name)`
+
+Returns VCAP_SERVICES environment variable as an object

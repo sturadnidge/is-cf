@@ -32,10 +32,10 @@ Determines Cloud Foundry presence using environment variables, returns a boolean
 
 Returns VCAP_APPLICATION environment variable as an object
 
+#### `getServicesEnv()`
+
+Returns VCAP_SERVICES environment variable as an object
+
 #### `getService(name)`
 
 Returns environment metadata for service 'name' as an array, or null if service 'name' not found
-
-#### `getServicesEnv(name)`
-
-Returns VCAP_SERVICES environment variable as an object

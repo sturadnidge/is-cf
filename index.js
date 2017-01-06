@@ -34,13 +34,5 @@ module.exports = {
 
 // internal
 function hasServices() {
-  if (!'VCAP_SERVICES' in process.env) {
-    return false;
-  }
-
-  if (_.isEmpty(JSON.parse(process.env.VCAP_SERVICES))) {
-    return false;
-  }
-
-  return true;
+  return process.env.VCAP_SERVICES;
 }

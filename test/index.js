@@ -4,7 +4,7 @@ var should = require('chai').should(),
     isCF = require('../index.js');
 
 describe('#env', function() {
-  it('checks for absence of standard CF environment variable', function() {
+  it('checks for presence of standard CF environment variable', function() {
     if (process.env.VCAP_APPLICATION) {
       delete process.env.VCAP_APPLICATION;
     }
@@ -31,7 +31,28 @@ describe('#getServicesEnv', function() {
 });
 
 describe('#getService', function() {
-  it('gets service environment metadata', function() {
+  it('gets service metadata', function() {
+    if (!process.env.VCAP_SERVICES) {
+      process.env.VCAP_SERVICES = '{"is-cf": []}';
+    }
+    isCF.getService('is-cf').should.be.an('array');
+  });
+});
+
+describe('#getService', function() {
+  it('fails to get service metadata when no services exist', function() {
+    if (process.env.VCAP_SERVICES) {
+      delete process.env.VCAP_SERVICES;
+    }
+    should.not.exist(isCF.getService('foo'));
+  });
+});
+
+describe('#getService', function() {
+  it('fails to get service metadata when other services exist', function() {
+    if (!process.env.VCAP_SERVICES) {
+      process.env.VCAP_SERVICES = '{"is-cf": []}';
+    }
     should.not.exist(isCF.getService('foo'));
   });
 });

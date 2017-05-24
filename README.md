@@ -39,3 +39,7 @@ Returns VCAP_SERVICES environment variable as an object
 #### `getService(name)`
 
 Returns environment metadata for service 'name' as an array, or null if service 'name' not found
+
+#### `getServiceInstance(name)`
+
+Returns environment metadata for service instance 'name' as an object, or null if service instance 'name' not found

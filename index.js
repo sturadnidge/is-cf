@@ -26,6 +26,27 @@ module.exports = {
 
   },
 
+  getServiceInstance: function (serviceName, instanceName) {
+    if (!hasServices()) {
+      return null;
+    }
+
+    let services = module.exports.getServicesEnv();
+
+    if (serviceName in services) {
+
+      let instance = _.find(services[serviceName], function(obj) {
+        return obj.name === instanceName;
+      });
+
+      return _.isNil(instance) ? null : instance;
+
+    } else {
+      return null;
+    }
+
+  },
+
   getServicesEnv: function () {
     return JSON.parse(process.env.VCAP_SERVICES);
   }

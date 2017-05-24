@@ -42,4 +42,4 @@ Returns environment metadata for service 'name' as an array, or null if service 
 
 #### `getServiceInstance(serviceName, instanceName)`
 
-Returns environment metadata for service instance 'name' as an object, or null if service instance 'name' not found
+Returns environment metadata for service instance 'name' as an object, or null if service instance 'instanceName' not found
